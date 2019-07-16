@@ -48,7 +48,7 @@ public class AuthorController extends HttpServlet {
 			out.flush();
 		}
 		
-		if(path.contains("/author/remove/id")) {
+		if(path.contains("/author/remove/id")) { //REMOVE opeartion
 			String pathInfo = request.getPathInfo();
 
 			if(pathInfo == null) {
@@ -62,7 +62,7 @@ public class AuthorController extends HttpServlet {
 				out.print("Your author got deleted");
 			}
 		}
-		if(path.contains("/author/retrieve/id")) {
+		if(path.contains("/author/retrieve/id")) { //RETRIEVE opeartion
 			System.out.println("3");
 
 			String pathInfo = request.getPathInfo();
@@ -103,14 +103,14 @@ public class AuthorController extends HttpServlet {
 		String strID = request.getParameter("id");
 		Gson gson = new Gson();
 		System.out.println(strID);
-		if(strID.equals("")) {
+		if(strID.equals("")) { //CREATE operation
 	        authorService.createAuthor( uname);
 			PrintWriter out = response.getWriter();
 			out.print(gson.toJson( uname));
 			out.flush();
 		}
 		else {
-			int id= Integer.parseInt(strID);
+			int id= Integer.parseInt(strID); //UPDATE operation
 			authorService.updateAuthorName(id,  uname);
 			PrintWriter out = response.getWriter();
 			out.print(gson.toJson( uname));
